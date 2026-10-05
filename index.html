@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1020">
+<link rel="manifest" href="manifest.json">
+<title>Cricket Auction</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div><div class="eyebrow">LIVE CRICKET AUCTION</div><h1 id="appTitle">Cricket Auction</h1></div>
+    <button id="logoutBtn" class="secondary small hidden">Logout</button>
+  </header>
+
+  <section id="loginView" class="card login-card">
+    <h2>Sign in</h2>
+    <p class="sub">Admin uses email/password. Team phones use a team access code.</p>
+    <div class="login-tabs">
+      <button id="adminLoginTab" class="tab active">Admin</button>
+      <button id="teamLoginTab" class="tab">Team</button>
+    </div>
+    <div id="adminLoginBox">
+      <label>Email<input id="adminEmail" type="email" autocomplete="username" placeholder="Admin email"></label>
+      <label>Password<input id="adminPassword" type="password" autocomplete="current-password" placeholder="Password"></label>
+      <button id="adminLogin" class="primary bigbtn">ADMIN LOGIN</button>
+    </div>
+    <div id="teamLoginBox" class="hidden">
+      <label>Team access code<input id="teamCode" autocomplete="off" placeholder="e.g. A7K4P2"></label>
+      <button id="teamLogin" class="primary bigbtn">JOIN TEAM</button>
+    </div>
+    <div id="loginMessage" class="message"></div>
+  </section>
+
+  <section id="adminView" class="hidden">
+    <nav class="tabs"><button class="tab active">Admin Dashboard</button></nav>
+    <div class="card">
+      <h2>Tournament Settings</h2>
+      <div class="grid">
+        <label>Total points<input id="totalPoints" type="number" min="1" value="1200"></label>
+        <label>Players required<input id="playersRequired" type="number" min="1" value="8"></label>
+        <label>Minimum bid<input id="minimumBid" type="number" min="1" value="30"></label>
+        <label>Tournament name<input id="tournamentName" value="Cricket Auction"></label>
+      </div>
+      <button id="saveSettings" class="primary">Save Settings</button>
+    </div>
+    <div class="card">
+      <div class="row between"><h2>Teams</h2><span id="teamCount" class="pill">0 teams</span></div>
+      <div class="grid team-add"><input id="newTeamName" placeholder="Team name"><button id="addTeam" class="primary">Add Team</button></div>
+      <div id="adminTeams"></div>
+    </div>
+    <div class="card">
+      <h2>Current Auction</h2>
+      <div class="current-player">
+        <label>Player name<input id="currentPlayer" placeholder="e.g. Mohammed Awez"></label>
+        <div class="auction-grid"><label>Winning team<select id="winningTeam"></select></label><label>Sold price<input id="soldPrice" type="number" min="1" placeholder="e.g. 250"></label></div>
+        <button id="sellPlayer" class="primary bigbtn">MARK SOLD</button>
+        <div id="adminMessage" class="message"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="row between"><h2>Auction History</h2><button id="undoSale" class="secondary">Undo Last Sale</button></div>
+      <div id="history"></div>
+    </div>
+  </section>
+
+  <section id="teamView" class="hidden"><div id="teamDashboard"></div></section>
+</div>
+
+<script type="module" src="app.js?v=20261006-4"></script>
+</body>
+</html>
