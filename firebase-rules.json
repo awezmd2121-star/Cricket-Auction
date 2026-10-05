@@ -1,0 +1,39 @@
+{
+  "rules": {
+    "tournaments": {
+      "main": {
+        "settings": {
+          ".read": "auth != null",
+          ".write": "auth != null && auth.token.email == 'REPLACE_WITH_ADMIN_EMAIL'"
+        },
+        "auction": {
+          ".read": "auth != null",
+          ".write": "auth != null && auth.token.email == 'REPLACE_WITH_ADMIN_EMAIL'"
+        },
+        "teams": {
+          "$teamId": {
+            ".read": "auth != null && (auth.token.email == 'REPLACE_WITH_ADMIN_EMAIL' || root.child('teamMembers').child(auth.uid).child('teamId').val() == $teamId)",
+            ".write": "auth != null && auth.token.email == 'REPLACE_WITH_ADMIN_EMAIL'"
+          }
+        },
+        "sales": {
+          ".read": "auth != null && auth.token.email == 'REPLACE_WITH_ADMIN_EMAIL'",
+          ".write": "auth != null && auth.token.email == 'REPLACE_WITH_ADMIN_EMAIL'"
+        }
+      }
+    },
+    "teamMembers": {
+      "$uid": {
+        ".read": "auth != null && auth.uid == $uid",
+        ".write": "auth != null && auth.uid == $uid && newData.hasChildren(['teamId']) && root.child('tournaments').child('main').child('teams').child(newData.child('teamId').val()).child('accessCode').val() == newData.child('accessCode').val()",
+        ".validate": "newData.child('teamId').isString() && newData.child('accessCode').isString()"
+      }
+    },
+    "teamAccess": {
+      "$code": {
+        ".read": "auth != null",
+        ".write": "auth != null && auth.token.email == 'REPLACE_WITH_ADMIN_EMAIL'"
+      }
+    }
+  }
+}

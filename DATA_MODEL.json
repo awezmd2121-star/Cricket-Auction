@@ -1,0 +1,7 @@
+{
+  "tournaments/main/settings": {"tournamentName":"Cricket Auction","totalPoints":1200,"playersRequired":8,"minimumBid":30},
+  "tournaments/main/teams/{teamId}": {"id":"team_x","name":"Team A","points":1200,"accessCode":"A7K4P2","players":[]},
+  "tournaments/main/sales/{saleId}": {"player":"Player 1","teamId":"team_x","teamName":"Team A","price":100,"createdAt":0},
+  "tournaments/main/auction": {"currentPlayer":"Player 1"},
+  "teamMembers/{uid}": {"teamId":"team_x","accessCode":"A7K4P2","createdAt":0}
+}
